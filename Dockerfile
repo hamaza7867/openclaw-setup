@@ -10,6 +10,10 @@ RUN npm install -g openclaw@latest
 COPY package*.json ./
 RUN npm install --omit=dev
 
+# Pre-stage the runtime config path
+RUN mkdir -p /root/.openclaw
+COPY openclaw.json /root/.openclaw/openclaw.json
+
 # Expose internal Control plane and Canvas Webhook Bridge ports
 EXPOSE 18789
 EXPOSE 18791

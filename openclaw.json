@@ -1,0 +1,105 @@
+{
+    "meta": {
+        "lastTouchedVersion": "2026.2.3",
+        "lastTouchedAt": "2026-07-03T01:25:00.000Z"
+    },
+    "models": {
+        "mode": "merge",
+        "providers": {
+            "agentrouter-messages": {
+                "baseUrl": "https://agentrouter.org",
+                "apiKey": "${AGENTROUTER_API_KEY}",
+                "auth": "token",
+                "api": "anthropic-messages",
+                "models": [
+                    {
+                        "id": "claude-opus-4-6",
+                        "name": "claude-opus-4-6",
+                        "reasoning": false,
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "cost": {
+                            "input": 0,
+                            "output": 0,
+                            "cacheRead": 0,
+                            "cacheWrite": 0
+                        },
+                        "contextWindow": 200000,
+                        "maxTokens": 16384
+                    }
+                ]
+            },
+            "agentrouter-completions": {
+                "baseUrl": "https://agentrouter.org/v1",
+                "apiKey": "${AGENTROUTER_API_KEY}",
+                "auth": "token",
+                "api": "openai-completions",
+                "models": [
+                    {
+                        "id": "glm-5.2",
+                        "name": "glm-5.2",
+                        "reasoning": false,
+                        "input": [
+                            "text"
+                        ],
+                        "cost": {
+                            "input": 0,
+                            "output": 0,
+                            "cacheRead": 0,
+                            "cacheWrite": 0
+                        },
+                        "contextWindow": 100000,
+                        "maxTokens": 8192
+                    },
+                    {
+                        "id": "gpt-5.5",
+                        "name": "gpt-5.5",
+                        "reasoning": false,
+                        "input": [
+                            "text"
+                        ],
+                        "cost": {
+                            "input": 0,
+                            "output": 0,
+                            "cacheRead": 0,
+                            "cacheWrite": 0
+                        },
+                        "contextWindow": 100000,
+                        "maxTokens": 8192
+                    }
+                ]
+            }
+        },
+        "bedrockDiscovery": {
+            "enabled": true,
+            "providerFilter": []
+        }
+    },
+    "nodeHost": {
+        "browserProxy": {
+            "allowProfiles": [
+                ""
+            ]
+        }
+    },
+    "agents": {
+        "defaults": {
+            "model": {
+                "primary": "agentrouter-completions/glm-5.2"
+            },
+            "compaction": {
+                "mode": "safeguard"
+            },
+            "maxConcurrent": 4,
+            "subagents": {
+                "maxConcurrent": 8
+            }
+        }
+    },
+    "commands": {
+        "native": "auto",
+        "nativeSkills": "auto"
+    }
+}
